@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Iron_Chat
 {
-    public partial class Menu : Form
+    public partial class wJoinHost : Form
     {
-        public Menu()
+        public wJoinHost()
         {
             InitializeComponent();
         }
@@ -24,37 +24,37 @@ namespace Iron_Chat
 
         private void textBox1_GotFocus(object sender, EventArgs e)
         {
-            if (textBox1.ForeColor == SystemColors.GrayText)
+            if (txtAddress.ForeColor == SystemColors.GrayText)
             {
-                textBox1.ForeColor = SystemColors.WindowText;
-                textBox1.Text = "";
+                txtAddress.ForeColor = SystemColors.WindowText;
+                txtAddress.Text = "";
             }
         }
 
         private void textBox1_LostFocus(object sender, EventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(textBox1.Text))
+            if (String.IsNullOrWhiteSpace(txtAddress.Text))
             {
-                textBox1.ForeColor = SystemColors.GrayText;
-                textBox1.Text = "Address";
+                txtAddress.ForeColor = SystemColors.GrayText;
+                txtAddress.Text = "Address";
             }
         }
 
         private void textBox2_GotFocus(object sender, EventArgs e)
         {
-            if (textBox2.ForeColor == SystemColors.GrayText)
+            if (txtPortHost.ForeColor == SystemColors.GrayText)
             {
-                textBox2.ForeColor = SystemColors.WindowText;
-                textBox2.Text = "";
+                txtPortHost.ForeColor = SystemColors.WindowText;
+                txtPortHost.Text = "";
             }
         }
 
         private void textBox2_LostFocus(object sender, EventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(textBox2.Text))
+            if (String.IsNullOrWhiteSpace(txtPortHost.Text))
             {
-                textBox2.ForeColor = SystemColors.GrayText;
-                textBox2.Text = "Port";
+                txtPortHost.ForeColor = SystemColors.GrayText;
+                txtPortHost.Text = "Port";
             }
         }
 
@@ -62,11 +62,11 @@ namespace Iron_Chat
         {
             try
             {
-                int port = int.Parse(textBox2.Text);
+                int port = int.Parse(txtPortHost.Text);
                 if (port >= 0 && port <= 65535)
                 {
                     this.Hide();
-                    Form2 chatWindow = new Form2();
+                    wChat chatWindow = new wChat();
                     chatWindow.openServer(port);
                     chatWindow.ShowDialog();
                     this.Show();

@@ -10,25 +10,16 @@ using System.Windows.Forms;
 
 namespace Iron_Chat
 {
-    public partial class Form2 : Form
+    public partial class wMainWindow : Form
     {
-        Server server;
-        User user;
-
-        public Form2()
+        public wMainWindow()
         {
             InitializeComponent();
         }
 
-        public void openServer(int port)
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            server = new Server();
-            server.open(port);
-        }
-
-        private void Form2_Load(object sender, EventArgs e)
-        {
-
+            Application.Exit();
         }
     }
 }

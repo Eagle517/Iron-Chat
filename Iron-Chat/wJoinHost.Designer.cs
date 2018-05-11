@@ -1,6 +1,6 @@
 ﻿namespace Iron_Chat
 {
-    partial class Menu
+    partial class wJoinHost
     {
         /// <summary>
         /// Required designer variable.
@@ -30,11 +30,12 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtPortJoin = new System.Windows.Forms.TextBox();
+            this.btnConnect = new System.Windows.Forms.Button();
+            this.txtAddress = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.btnHost = new System.Windows.Forms.Button();
+            this.txtPortHost = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -55,8 +56,9 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.button1);
-            this.tabPage1.Controls.Add(this.textBox1);
+            this.tabPage1.Controls.Add(this.txtPortJoin);
+            this.tabPage1.Controls.Add(this.btnConnect);
+            this.tabPage1.Controls.Add(this.txtAddress);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -65,30 +67,39 @@
             this.tabPage1.Text = "Join";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // txtPortJoin
             // 
-            this.button1.Location = new System.Drawing.Point(90, 49);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Connect";
-            this.button1.UseVisualStyleBackColor = true;
+            this.txtPortJoin.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtPortJoin.Location = new System.Drawing.Point(156, 23);
+            this.txtPortJoin.Name = "txtPortJoin";
+            this.txtPortJoin.Size = new System.Drawing.Size(83, 20);
+            this.txtPortJoin.TabIndex = 2;
+            this.txtPortJoin.Text = "Port";
             // 
-            // textBox1
+            // btnConnect
             // 
-            this.textBox1.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.textBox1.Location = new System.Drawing.Point(67, 22);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(121, 20);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "Address";
-            this.textBox1.GotFocus += new System.EventHandler(this.textBox1_GotFocus);
-            this.textBox1.LostFocus += new System.EventHandler(this.textBox1_LostFocus);
+            this.btnConnect.Location = new System.Drawing.Point(90, 49);
+            this.btnConnect.Name = "btnConnect";
+            this.btnConnect.Size = new System.Drawing.Size(75, 23);
+            this.btnConnect.TabIndex = 1;
+            this.btnConnect.Text = "Connect";
+            this.btnConnect.UseVisualStyleBackColor = true;
+            // 
+            // txtAddress
+            // 
+            this.txtAddress.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtAddress.Location = new System.Drawing.Point(8, 23);
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Size = new System.Drawing.Size(142, 20);
+            this.txtAddress.TabIndex = 0;
+            this.txtAddress.Text = "Address";
+            this.txtAddress.GotFocus += new System.EventHandler(this.textBox1_GotFocus);
+            this.txtAddress.LostFocus += new System.EventHandler(this.textBox1_LostFocus);
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.button2);
-            this.tabPage2.Controls.Add(this.textBox2);
+            this.tabPage2.Controls.Add(this.btnHost);
+            this.tabPage2.Controls.Add(this.txtPortHost);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -97,28 +108,28 @@
             this.tabPage2.Text = "Host";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnHost
             // 
-            this.button2.Location = new System.Drawing.Point(90, 49);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Host";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnHost.Location = new System.Drawing.Point(90, 49);
+            this.btnHost.Name = "btnHost";
+            this.btnHost.Size = new System.Drawing.Size(75, 23);
+            this.btnHost.TabIndex = 3;
+            this.btnHost.Text = "Host";
+            this.btnHost.UseVisualStyleBackColor = true;
+            this.btnHost.Click += new System.EventHandler(this.button2_Click);
             // 
-            // textBox2
+            // txtPortHost
             // 
-            this.textBox2.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.textBox2.Location = new System.Drawing.Point(67, 22);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(121, 20);
-            this.textBox2.TabIndex = 2;
-            this.textBox2.Text = "Port";
-            this.textBox2.GotFocus += new System.EventHandler(this.textBox2_GotFocus);
-            this.textBox2.LostFocus += new System.EventHandler(this.textBox2_LostFocus);
+            this.txtPortHost.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtPortHost.Location = new System.Drawing.Point(67, 22);
+            this.txtPortHost.Name = "txtPortHost";
+            this.txtPortHost.Size = new System.Drawing.Size(121, 20);
+            this.txtPortHost.TabIndex = 2;
+            this.txtPortHost.Text = "Port";
+            this.txtPortHost.GotFocus += new System.EventHandler(this.textBox2_GotFocus);
+            this.txtPortHost.LostFocus += new System.EventHandler(this.textBox2_LostFocus);
             // 
-            // Menu
+            // wJoinHost
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -127,7 +138,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Menu";
+            this.Name = "wJoinHost";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Iron Chat";
             this.Load += new System.EventHandler(this.Menu_Load);
@@ -145,10 +156,11 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button btnConnect;
+        private System.Windows.Forms.TextBox txtAddress;
+        private System.Windows.Forms.Button btnHost;
+        private System.Windows.Forms.TextBox txtPortHost;
+        private System.Windows.Forms.TextBox txtPortJoin;
     }
 }
 
