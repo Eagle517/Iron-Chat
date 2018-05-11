@@ -99,7 +99,7 @@ namespace Iron_Chat
             connection = conn;
         }
 
-        public void connect(string ip, int port)
+        public void Connect(string ip, int port)
         {
             try
             {
@@ -107,7 +107,7 @@ namespace Iron_Chat
                     connection.Close();
                 connection = new TcpClient();
                 connection.Connect(ip, port);
-                receive();
+                Receive();
             }
             catch(Exception)
             {
@@ -115,7 +115,7 @@ namespace Iron_Chat
             }
         }
 
-        public void disconnect()
+        public void Disconnect()
         {
             try
             {
@@ -127,26 +127,26 @@ namespace Iron_Chat
             }
         }
 
-        private void receive()
+        private void Receive()
         {
             if (connection.Client.Connected)
             {
                 try
                 {
                     byte[] buffer = new byte[1024];
-                    connection.Client.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, new AsyncCallback(onReceive), buffer);
+                    connection.Client.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, new AsyncCallback(OnReceive), buffer);
                 }
                 catch (Exception)
                 {
-                    disconnect();
+                    Disconnect();
                 }
             }
         }
 
-        private void onReceive(IAsyncResult data)
+        private void OnReceive(IAsyncResult data)
         {
 
-            receive();
+            Receive();
         }
     }
 }

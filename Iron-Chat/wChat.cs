@@ -23,7 +23,7 @@ namespace Iron_Chat
         public void openServer(int port)
         {
             server = new Server();
-            server.open(port);
+            server.Open(port);
         }
 
         private void Form2_Load(object sender, EventArgs e)

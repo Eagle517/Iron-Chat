@@ -28,16 +28,16 @@ namespace Iron_Chat
 
         ~Server()
         {
-            close();
+            Close();
         }
 
-        public void open(int port)
+        public void Open(int port)
         {
             try
             {
-                listener = new TcpListener(getLocalIP(), port);
+                listener = new TcpListener(GetLocalIP(), port);
                 listener.Start();
-                listenForConnections();
+                ListenForConnections();
             }
             catch(Exception)
             {
@@ -45,28 +45,30 @@ namespace Iron_Chat
             }
         }
 
-        public void close()
+        public void Close()
         {
             listener.Stop();
         }
 
-        private void listenForConnections()
+        private void ListenForConnections()
         {
-            listener.BeginAcceptTcpClient(new AsyncCallback(onConnectAttempt), listener);
+            listener.BeginAcceptTcpClient(new AsyncCallback(OnConnectAttempt), listener);
         }
 
-        private void onConnectAttempt(IAsyncResult ar)
+        private void OnConnectAttempt(IAsyncResult ar)
         {
             byte[] ack = { 25 };
             TcpClient tcp = listener.EndAcceptTcpClient(ar);
             tcp.Client.Send(ack);
 
-            State state = new State();
-            state.tcp = tcp;
-            tcp.Client.BeginReceive(state.buffer, 0, state.buffer.Length, SocketFlags.None, new AsyncCallback(onUserAck), state);
+            State state = new State
+            {
+                tcp = tcp
+            };
+            tcp.Client.BeginReceive(state.buffer, 0, state.buffer.Length, SocketFlags.None, new AsyncCallback(OnUserAck), state);
         }
 
-        private void onUserAck(IAsyncResult ar)
+        private void OnUserAck(IAsyncResult ar)
         {
             State state = (State)ar.AsyncState;
             TcpClient tcp = state.tcp;
@@ -77,27 +79,33 @@ namespace Iron_Chat
                 string name = System.Text.Encoding.UTF8.GetString(buffer, 1, buffer.Length);
                 if(!String.IsNullOrWhiteSpace(name))
                 {
-                    User user = new User(tcp);
-                    user.Username = name;
-                    user.UserID = userID;
+                    User user = new User(tcp)
+                    {
+                        Username = name,
+                        UserID = userID
+                    };
                     users.Add(user);
 
-                    NUserJoin notification = new NUserJoin();
-                    notification.userID = userID;
-                    notification.username = name;
+                    NUserJoin notification = new NUserJoin
+                    {
+                        userID = userID,
+                        username = name
+                    };
                     userID++;
 
                     byte[] nbuf = notification.Serialize();
                     listener.Server.Send(nbuf, 0, nbuf.Length, SocketFlags.Broadcast);
 
-                    UserState uState = new UserState();
-                    uState.user = user;
-                    user.Connection.Client.BeginReceive(uState.buffer, 0, uState.buffer.Length, SocketFlags.None, new AsyncCallback(onUserData), uState);
+                    UserState uState = new UserState
+                    {
+                        user = user
+                    };
+                    user.Connection.Client.BeginReceive(uState.buffer, 0, uState.buffer.Length, SocketFlags.None, new AsyncCallback(OnUserData), uState);
                 }
             }
         }
 
-        private void onUserData(IAsyncResult ar)
+        private void OnUserData(IAsyncResult ar)
         {
             UserState uState = (UserState)ar.AsyncState;
             User user = uState.user;
@@ -112,7 +120,7 @@ namespace Iron_Chat
             }
         }
 
-        private IPAddress getLocalIP()
+        private IPAddress GetLocalIP()
         {
             using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0))
             {
