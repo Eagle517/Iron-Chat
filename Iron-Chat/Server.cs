@@ -26,6 +26,11 @@ namespace Iron_Chat
         List<User> users;
         short userID = 0;
 
+        ~Server()
+        {
+            close();
+        }
+
         public void open(int port)
         {
             try

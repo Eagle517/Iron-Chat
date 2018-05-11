@@ -92,7 +92,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(251, 81);
+            this.tabPage2.Size = new System.Drawing.Size(247, 81);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Host";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -105,6 +105,7 @@
             this.button2.TabIndex = 3;
             this.button2.Text = "Host";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // textBox2
             // 

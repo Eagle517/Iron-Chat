@@ -57,5 +57,25 @@ namespace Iron_Chat
                 textBox2.Text = "Port";
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int port = int.Parse(textBox2.Text);
+                if (port >= 0 && port <= 65535)
+                {
+                    this.Hide();
+                    Form2 chatWindow = new Form2();
+                    chatWindow.openServer(port);
+                    chatWindow.ShowDialog();
+                    this.Show();
+                }
+            }
+            catch(Exception)
+            {
+
+            }
+        }
     }
 }
