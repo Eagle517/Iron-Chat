@@ -70,6 +70,34 @@ namespace Iron_Chat
 
         private TcpClient connection;
         private string username;
+        private short userID;
+
+        public string Username
+        {
+            get { return username; }
+            set
+            {
+                if (!String.IsNullOrWhiteSpace(value))
+                    username = value;
+            }
+        }
+
+        public short UserID
+        {
+            get { return userID; }
+            set { userID = value; }
+        }
+
+        public TcpClient Connection
+        {
+            get { return connection; }
+        }
+
+        public User() { }
+        public User(TcpClient conn)
+        {
+            connection = conn;
+        }
 
         public void connect(string ip, int port)
         {
