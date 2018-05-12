@@ -76,6 +76,12 @@ namespace Iron_Chat
             {
 
             }
+
+            //After the server is being setup bring up the main chat window
+            wChat f = new wChat();
+            f.MdiParent = Application.OpenForms["wMainWindow"];
+            f.Show();
+            this.Close();
         }
     }
 }

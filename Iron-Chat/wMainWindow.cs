@@ -15,11 +15,20 @@ namespace Iron_Chat
         public wMainWindow()
         {
             InitializeComponent();
+
+            wJoinHost f = new wJoinHost();
+            f.MdiParent = this;
+            f.Show();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void wMainWindow_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

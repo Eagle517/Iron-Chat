@@ -69,7 +69,7 @@
             this.txtChat.Size = new System.Drawing.Size(434, 290);
             this.txtChat.TabIndex = 0;
             // 
-            // Form2
+            // wChat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -81,7 +81,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Form2";
+            this.Name = "wChat";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Iron Chat";
             this.Load += new System.EventHandler(this.Form2_Load);
             this.ResumeLayout(false);
