@@ -58,29 +58,47 @@ namespace Iron_Chat
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnAccept_Click(object sender, EventArgs e)
         {
-            try
+            if (tabJoinHost.SelectedTab.Text == "Host")
             {
-                int port = int.Parse(txtPortHost.Text);
-                if (port >= 0 && port <= 65535)
+                try
                 {
-                    this.Hide();
-                    wChat chatWindow = new wChat();
-                    chatWindow.openServer(port);
-                    chatWindow.ShowDialog();
-                    this.Show();
+                    int port = int.Parse(txtPortHost.Text);
+                    if (port >= 0 && port <= 65535)
+                    {
+                        //this.Hide();
+                        //wChat chatWindow = new wChat();
+                        //chatWindow.openServer(port);
+                        //chatWindow.ShowDialog();
+                        //this.Show();
+
+                        wChat f = new wChat
+                        {
+                            MdiParent = Application.OpenForms["wMainWindow"]
+                        };
+                        f.Show();
+                        this.Close();
+                    }
+                }
+                catch (Exception)
+                {
+
                 }
             }
-            catch(Exception)
+            else
             {
 
             }
+        }
 
-            //After the server is being setup bring up the main chat window
-            wChat f = new wChat();
-            f.MdiParent = Application.OpenForms["wMainWindow"];
-            f.Show();
+        private void tabJoinHost_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnAccept.Text = tabJoinHost.SelectedTab.Text;
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
             this.Close();
         }
     }

@@ -36,16 +36,18 @@
             // 
             // txtMessage
             // 
-            this.txtMessage.Location = new System.Drawing.Point(0, 297);
+            this.txtMessage.Location = new System.Drawing.Point(13, 346);
+            this.txtMessage.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(353, 20);
+            this.txtMessage.Size = new System.Drawing.Size(786, 22);
             this.txtMessage.TabIndex = 1;
             // 
             // btnSend
             // 
-            this.btnSend.Location = new System.Drawing.Point(359, 296);
+            this.btnSend.Location = new System.Drawing.Point(807, 346);
+            this.btnSend.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(75, 23);
+            this.btnSend.Size = new System.Drawing.Size(112, 22);
             this.btnSend.TabIndex = 2;
             this.btnSend.Text = "Send";
             this.btnSend.UseVisualStyleBackColor = true;
@@ -53,32 +55,37 @@
             // lstUsers
             // 
             this.lstUsers.FormattingEnabled = true;
-            this.lstUsers.Location = new System.Drawing.Point(440, 0);
+            this.lstUsers.ItemHeight = 15;
+            this.lstUsers.Location = new System.Drawing.Point(690, 14);
+            this.lstUsers.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.lstUsers.Name = "lstUsers";
-            this.lstUsers.Size = new System.Drawing.Size(169, 290);
+            this.lstUsers.Size = new System.Drawing.Size(229, 319);
             this.lstUsers.Sorted = true;
             this.lstUsers.TabIndex = 3;
             // 
             // txtChat
             // 
             this.txtChat.BackColor = System.Drawing.SystemColors.Window;
-            this.txtChat.Location = new System.Drawing.Point(0, 0);
+            this.txtChat.Location = new System.Drawing.Point(13, 14);
+            this.txtChat.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtChat.Multiline = true;
             this.txtChat.Name = "txtChat";
             this.txtChat.ReadOnly = true;
-            this.txtChat.Size = new System.Drawing.Size(434, 290);
+            this.txtChat.Size = new System.Drawing.Size(669, 320);
             this.txtChat.TabIndex = 0;
             // 
             // wChat
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(621, 329);
+            this.ClientSize = new System.Drawing.Size(932, 380);
             this.Controls.Add(this.lstUsers);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.txtMessage);
             this.Controls.Add(this.txtChat);
+            this.Font = new System.Drawing.Font("Lucida Console", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "wChat";

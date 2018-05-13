@@ -16,8 +16,10 @@ namespace Iron_Chat
         {
             InitializeComponent();
 
-            wJoinHost f = new wJoinHost();
-            f.MdiParent = this;
+            wJoinHost f = new wJoinHost
+            {
+                MdiParent = this
+            };
             f.Show();
         }
 
