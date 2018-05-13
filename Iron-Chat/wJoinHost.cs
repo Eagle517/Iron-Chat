@@ -78,6 +78,7 @@ namespace Iron_Chat
                             MdiParent = Application.OpenForms["wMainWindow"]
                         };
                         f.Show();
+                        f.openServer(port);
                         this.Close();
                     }
                 }

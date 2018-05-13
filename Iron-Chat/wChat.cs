@@ -13,7 +13,7 @@ namespace Iron_Chat
     public partial class wChat : Form
     {
         Server server;
-        User user;
+        User myself;
 
         public wChat()
         {
@@ -24,9 +24,16 @@ namespace Iron_Chat
         {
             server = new Server();
             server.Open(port);
+
+            myself = new User();
         }
 
         private void Form2_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSend_Click(object sender, EventArgs e)
         {
 
         }
