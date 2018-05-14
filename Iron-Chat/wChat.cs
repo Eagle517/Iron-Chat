@@ -24,13 +24,9 @@ namespace Iron_Chat
         {
             server = new Server();
             server.Open(port);
-
+            
             myself = new User();
-        }
-
-        private void Form2_Load(object sender, EventArgs e)
-        {
-
+            myself.Connect(server.GetLocalIP().ToString(), port);
         }
 
         private void btnSend_Click(object sender, EventArgs e)

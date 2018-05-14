@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Net.Sockets;
+using System.Windows.Forms;
 
 namespace Iron_Chat
 {
@@ -99,14 +96,33 @@ namespace Iron_Chat
             connection = conn;
         }
 
+        public void Log(string msg)
+        {
+            Console.WriteLine("User   | {0}", msg);
+        }
+
         public void Connect(string ip, int port)
         {
             try
             {
-                if (connection.Connected)
+                Log("Attempting to connect to " + ip + ":" + port.ToString());
+                if (connection != null && connection.Connected)
                     connection.Close();
                 connection = new TcpClient();
-                connection.Connect(ip, port);
+                connection.BeginConnect(ip, port, new AsyncCallback(onConnected), connection);
+            }
+            catch(Exception)
+            {
+
+            }
+        }
+
+        private void onConnected(IAsyncResult ar)
+        {
+            try
+            {
+                connection.EndConnect(ar);
+                Log("Connected to server");
                 Receive();
             }
             catch(Exception)
@@ -133,6 +149,7 @@ namespace Iron_Chat
             {
                 try
                 {
+                    Log("Receiving from server");
                     byte[] buffer = new byte[1024];
                     connection.Client.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, new AsyncCallback(OnReceive), buffer);
                 }
@@ -143,10 +160,42 @@ namespace Iron_Chat
             }
         }
 
-        private void OnReceive(IAsyncResult data)
+        private void OnReceive(IAsyncResult ar)
         {
+            byte[] buffer = (byte[])ar.AsyncState;
+            Log("BUFFER FLAG " + buffer[0].ToString());
+            switch (buffer[0])
+            {
+                case 25:
+                    Log("Received ack from server");
+                    byte[] ack = { 32 };
+                    Send(ack); 
+                    break;
+                case 1:
+                    Log("Join notification received");
+                    NUserJoin notification = new NUserJoin();
+                    notification.Deserialize(buffer);
+                    Log("Username: " + notification.username);
+                    Log("User ID: " + notification.userID);
+                    break;
+                default:
+                    break;
+            }
 
+            connection.Client.EndReceive(ar);
             Receive();
+        }
+
+        public void Send(byte[] buffer)
+        {
+            Log("Sending to remote connection");
+            connection.Client.BeginSend(buffer, 0, buffer.Length, SocketFlags.None, new AsyncCallback(OnSend), connection);
+        }
+
+        private void OnSend(IAsyncResult ar)
+        {
+            Log("Finished sending to remote connection");
+            connection.Client.EndSend(ar);
         }
     }
 }

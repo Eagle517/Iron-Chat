@@ -28,19 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtMessage = new System.Windows.Forms.TextBox();
             this.btnSend = new System.Windows.Forms.Button();
             this.lstUsers = new System.Windows.Forms.ListBox();
             this.txtChat = new System.Windows.Forms.TextBox();
+            this.txtMessage = new Iron_Chat.FETextBox();
             this.SuspendLayout();
-            // 
-            // txtMessage
-            // 
-            this.txtMessage.Location = new System.Drawing.Point(13, 346);
-            this.txtMessage.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(786, 22);
-            this.txtMessage.TabIndex = 1;
             // 
             // btnSend
             // 
@@ -75,14 +67,24 @@
             this.txtChat.Size = new System.Drawing.Size(669, 320);
             this.txtChat.TabIndex = 0;
             // 
+            // txtMessage
+            // 
+            this.txtMessage.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtMessage.Location = new System.Drawing.Point(13, 346);
+            this.txtMessage.Name = "txtMessage";
+            this.txtMessage.Placeholder = "Enter a message";
+            this.txtMessage.Size = new System.Drawing.Size(786, 22);
+            this.txtMessage.TabIndex = 4;
+            this.txtMessage.Text = "Enter a message";
+            // 
             // wChat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(932, 380);
+            this.Controls.Add(this.txtMessage);
             this.Controls.Add(this.lstUsers);
             this.Controls.Add(this.btnSend);
-            this.Controls.Add(this.txtMessage);
             this.Controls.Add(this.txtChat);
             this.Font = new System.Drawing.Font("Lucida Console", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -92,16 +94,15 @@
             this.Name = "wChat";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Iron Chat";
-            this.Load += new System.EventHandler(this.Form2_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.TextBox txtMessage;
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.ListBox lstUsers;
         private System.Windows.Forms.TextBox txtChat;
+        private FETextBox txtMessage;
     }
 }
