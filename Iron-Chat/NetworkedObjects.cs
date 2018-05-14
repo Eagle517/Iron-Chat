@@ -20,7 +20,12 @@ namespace Iron_Chat
             BinaryFormatter formatter = new BinaryFormatter();
             using (MemoryStream ms = new MemoryStream())
             {
+                ms.Write(BitConverter.GetBytes(netID), 0, 1);
+                ms.Write(new byte[4], 0, 4);
                 formatter.Serialize(ms, this);
+                ms.Position = 1;
+                ms.Write(BitConverter.GetBytes(ms.ToArray().Length), 0, 4);
+                Console.WriteLine(ms.ToArray().Length);
                 return ms.ToArray();
             }
         }
@@ -30,8 +35,12 @@ namespace Iron_Chat
             BinaryFormatter formatter = new BinaryFormatter();
             using (MemoryStream ms = new MemoryStream())
             {
-                ms.Write(data, 0, data.Length);
-                NUserJoin user = (NUserJoin)formatter.Deserialize(ms);
+                Int32 size = BitConverter.ToInt32(data, 1);
+                Console.WriteLine(size);
+                ms.Write(data, 4, size-5);
+                ms.Position = 0;
+                NUserJoin user = new NUserJoin();
+                user = (NUserJoin)formatter.Deserialize(ms);
                 this.userID = user.userID;
                 this.username = user.username;
             }
@@ -49,6 +58,7 @@ namespace Iron_Chat
             BinaryFormatter formatter = new BinaryFormatter();
             using (MemoryStream ms = new MemoryStream())
             {
+                ms.Write(BitConverter.GetBytes(netID), 0, 1);
                 formatter.Serialize(ms, this);
                 return ms.ToArray();
             }
@@ -59,7 +69,7 @@ namespace Iron_Chat
             BinaryFormatter formatter = new BinaryFormatter();
             using (MemoryStream ms = new MemoryStream())
             {
-                ms.Write(data, 0, data.Length);
+                ms.Write(data, 1, data.Length-1);
                 NUserLeave user = (NUserLeave)formatter.Deserialize(ms);
                 this.userID = user.userID;
             }
@@ -78,6 +88,7 @@ namespace Iron_Chat
             BinaryFormatter formatter = new BinaryFormatter();
             using (MemoryStream ms = new MemoryStream())
             {
+                ms.Write(BitConverter.GetBytes(netID), 0, 1);
                 formatter.Serialize(ms, this);
                 return ms.ToArray();
             }
@@ -88,7 +99,7 @@ namespace Iron_Chat
             BinaryFormatter formatter = new BinaryFormatter();
             using (MemoryStream ms = new MemoryStream())
             {
-                ms.Write(data, 0, data.Length);
+                ms.Write(data, 1, data.Length-1);
                 NMessage msg = (NMessage)formatter.Deserialize(ms);
                 this.userID = msg.userID;
                 this.message = msg.message;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net.Sockets;
 using System.Windows.Forms;
 
@@ -109,7 +110,7 @@ namespace Iron_Chat
                 if (connection != null && connection.Connected)
                     connection.Close();
                 connection = new TcpClient();
-                connection.BeginConnect(ip, port, new AsyncCallback(onConnected), connection);
+                connection.BeginConnect(ip, port, new AsyncCallback(OnConnected), connection);
             }
             catch(Exception)
             {
@@ -117,7 +118,7 @@ namespace Iron_Chat
             }
         }
 
-        private void onConnected(IAsyncResult ar)
+        private void OnConnected(IAsyncResult ar)
         {
             try
             {
@@ -150,7 +151,7 @@ namespace Iron_Chat
                 try
                 {
                     Log("Receiving from server");
-                    byte[] buffer = new byte[1024];
+                    byte[] buffer = new byte[2048];
                     connection.Client.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, new AsyncCallback(OnReceive), buffer);
                 }
                 catch (Exception)
@@ -169,15 +170,27 @@ namespace Iron_Chat
                 case 25:
                     Log("Received ack from server");
                     byte[] ack = { 32 };
-                    Send(ack); 
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        ms.Write(ack, 0, 1);
+                        string name = "Testing";
+                        foreach(char c in name)
+                        {
+                            ms.WriteByte((byte)c);
+                        }
+                        Send(ms.ToArray());
+                    }
                     break;
+
                 case 1:
                     Log("Join notification received");
+                    Log(buffer.Length.ToString());
                     NUserJoin notification = new NUserJoin();
                     notification.Deserialize(buffer);
                     Log("Username: " + notification.username);
                     Log("User ID: " + notification.userID);
                     break;
+
                 default:
                     break;
             }

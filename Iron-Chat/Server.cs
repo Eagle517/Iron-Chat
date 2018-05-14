@@ -11,13 +11,13 @@ namespace Iron_Chat
     class State
     {
         public TcpClient tcp;
-        public byte[] buffer = new byte[1024];
+        public byte[] buffer = new byte[2048];
     }
 
     class UserState
     {
         public User user;
-        public byte[] buffer = new byte[1024];
+        public byte[] buffer = new byte[2048];
     }
 
     class Server
@@ -106,7 +106,14 @@ namespace Iron_Chat
             if(buffer[0] == (byte)32)
             {
                 Log("Got user ack");
-                string name = System.Text.Encoding.UTF8.GetString(buffer, 1, buffer.Length-1);
+
+                string name = null;
+                string letter = null;
+                for(int i = 2; i < buffer.Length && (letter = ((char)buffer[i]).ToString()) != "\0"; i++)
+                {
+                    name += letter;
+                }
+
                 if(!String.IsNullOrWhiteSpace(name))
                 {
                     User user = new User(tcp)
@@ -122,9 +129,6 @@ namespace Iron_Chat
                         username = name
                     };
                     userID++;
-
-                    Log(notification.netID.ToString());
-                    Log(notification.Serialize()[0].ToString());
                     SendToAll(notification.Serialize());
 
                     UserState uState = new UserState
@@ -153,7 +157,7 @@ namespace Iron_Chat
 
             user.Connection.Client.EndReceive(ar);
 
-            uState.buffer = new byte[1024];
+            uState.buffer = new byte[2048];
             user.Connection.Client.BeginReceive(uState.buffer, 0, uState.buffer.Length, SocketFlags.None, new AsyncCallback(OnUserData), uState);
         }
 
