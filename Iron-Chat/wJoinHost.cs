@@ -22,42 +22,6 @@ namespace Iron_Chat
 
         }
 
-        private void textBox1_GotFocus(object sender, EventArgs e)
-        {
-            if (txtAddress.ForeColor == SystemColors.GrayText)
-            {
-                txtAddress.ForeColor = SystemColors.WindowText;
-                txtAddress.Text = "";
-            }
-        }
-
-        private void textBox1_LostFocus(object sender, EventArgs e)
-        {
-            if (String.IsNullOrWhiteSpace(txtAddress.Text))
-            {
-                txtAddress.ForeColor = SystemColors.GrayText;
-                txtAddress.Text = "Address";
-            }
-        }
-
-        private void textBox2_GotFocus(object sender, EventArgs e)
-        {
-            if (txtPortHost.ForeColor == SystemColors.GrayText)
-            {
-                txtPortHost.ForeColor = SystemColors.WindowText;
-                txtPortHost.Text = "";
-            }
-        }
-
-        private void textBox2_LostFocus(object sender, EventArgs e)
-        {
-            if (String.IsNullOrWhiteSpace(txtPortHost.Text))
-            {
-                txtPortHost.ForeColor = SystemColors.GrayText;
-                txtPortHost.Text = "Port";
-            }
-        }
-
         private void btnAccept_Click(object sender, EventArgs e)
         {
             if (tabJoinHost.SelectedTab.Text == "Host")

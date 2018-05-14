@@ -45,6 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FETextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="wJoinHost.cs">
       <SubType>Form</SubType>

@@ -30,13 +30,13 @@
         {
             this.tabJoinHost = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.txtPortJoin = new System.Windows.Forms.TextBox();
-            this.txtAddress = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.txtPortHost = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnAccept = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.txtPortJoin = new Iron_Chat.FETextBox();
+            this.txtAddress = new Iron_Chat.FETextBox();
+            this.txtServerName = new Iron_Chat.FETextBox();
+            this.txtPortHost = new Iron_Chat.FETextBox();
             this.tabJoinHost.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -69,32 +69,10 @@
             this.tabPage1.Text = "Join";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // txtPortJoin
-            // 
-            this.txtPortJoin.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtPortJoin.Location = new System.Drawing.Point(256, 6);
-            this.txtPortJoin.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtPortJoin.Name = "txtPortJoin";
-            this.txtPortJoin.Size = new System.Drawing.Size(110, 22);
-            this.txtPortJoin.TabIndex = 2;
-            this.txtPortJoin.Text = "Port";
-            // 
-            // txtAddress
-            // 
-            this.txtAddress.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtAddress.Location = new System.Drawing.Point(9, 6);
-            this.txtAddress.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(239, 22);
-            this.txtAddress.TabIndex = 0;
-            this.txtAddress.Text = "Address";
-            this.txtAddress.GotFocus += new System.EventHandler(this.textBox1_GotFocus);
-            this.txtAddress.LostFocus += new System.EventHandler(this.textBox1_LostFocus);
-            // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.textBox1);
             this.tabPage2.Controls.Add(this.txtPortHost);
+            this.tabPage2.Controls.Add(this.txtServerName);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPage2.Name = "tabPage2";
@@ -103,27 +81,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Host";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // txtPortHost
-            // 
-            this.txtPortHost.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtPortHost.Location = new System.Drawing.Point(9, 34);
-            this.txtPortHost.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtPortHost.Name = "txtPortHost";
-            this.txtPortHost.Size = new System.Drawing.Size(120, 22);
-            this.txtPortHost.TabIndex = 2;
-            this.txtPortHost.Text = "Port";
-            this.txtPortHost.GotFocus += new System.EventHandler(this.textBox2_GotFocus);
-            this.txtPortHost.LostFocus += new System.EventHandler(this.textBox2_LostFocus);
-            // 
-            // textBox1
-            // 
-            this.textBox1.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.textBox1.Location = new System.Drawing.Point(8, 6);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(357, 22);
-            this.textBox1.TabIndex = 2;
-            this.textBox1.Text = "Server Name";
             // 
             // btnAccept
             // 
@@ -148,6 +105,46 @@
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // txtPortJoin
+            // 
+            this.txtPortJoin.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtPortJoin.Location = new System.Drawing.Point(256, 6);
+            this.txtPortJoin.Name = "txtPortJoin";
+            this.txtPortJoin.Placeholder = "Port";
+            this.txtPortJoin.Size = new System.Drawing.Size(109, 22);
+            this.txtPortJoin.TabIndex = 4;
+            this.txtPortJoin.Text = "Port";
+            // 
+            // txtAddress
+            // 
+            this.txtAddress.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtAddress.Location = new System.Drawing.Point(9, 6);
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Placeholder = "Address";
+            this.txtAddress.Size = new System.Drawing.Size(239, 22);
+            this.txtAddress.TabIndex = 3;
+            this.txtAddress.Text = "Address";
+            // 
+            // txtServerName
+            // 
+            this.txtServerName.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtServerName.Location = new System.Drawing.Point(9, 6);
+            this.txtServerName.Name = "txtServerName";
+            this.txtServerName.Placeholder = "Server Name";
+            this.txtServerName.Size = new System.Drawing.Size(356, 22);
+            this.txtServerName.TabIndex = 3;
+            this.txtServerName.Text = "Server Name";
+            // 
+            // txtPortHost
+            // 
+            this.txtPortHost.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtPortHost.Location = new System.Drawing.Point(9, 34);
+            this.txtPortHost.Name = "txtPortHost";
+            this.txtPortHost.Placeholder = "Port";
+            this.txtPortHost.Size = new System.Drawing.Size(120, 22);
+            this.txtPortHost.TabIndex = 4;
+            this.txtPortHost.Text = "Port";
             // 
             // wJoinHost
             // 
@@ -182,12 +179,12 @@
         private System.Windows.Forms.TabControl tabJoinHost;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TextBox txtAddress;
-        private System.Windows.Forms.TextBox txtPortHost;
-        private System.Windows.Forms.TextBox txtPortJoin;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnAccept;
         private System.Windows.Forms.Button btnClose;
+        private FETextBox txtAddress;
+        private FETextBox txtPortJoin;
+        private FETextBox txtServerName;
+        private FETextBox txtPortHost;
     }
 }
 
